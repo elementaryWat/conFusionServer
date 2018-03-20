@@ -10,6 +10,17 @@ var users = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
 var promosRouter = require('./routes/promoRouter');
 
+const mongoose=require("mongoose");
+const url="mongodb://localhost:27017/conFusion";
+
+const connect=mongoose.connect(url);
+connect.then(()=>{
+  console.log("Se conecto de manera correcta a la base de datos");
+})
+.catch(err=>{
+  console.log("Ha ocurrido un error "+err);
+})
+
 var app = express();
 
 // view engine setup

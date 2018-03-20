@@ -1,0 +1,59 @@
+ [{
+        "name":"Tacos Mexicanos",
+        "description":"Uno de los clasicos de CentroAmerica",
+        "image":"images/tacos.jpg",	
+        "category":"Entradas",
+        "label":"Mexico DC",
+        "price":34,
+        "featured":true,
+        "comments":[
+            {
+                "review":5,
+                "comment":"Fue amor a primer mordisco :D",
+                "author":"Tony Stark"
+            },
+            {
+                "review":5,
+                "comment":"Esta como para perder el control XD",
+                "author":"Bruce Banner"
+            }
+        ]
+    },
+    {
+        "name":"Pollo a la Crema con champiñones y Papas",
+        "description":"Una forma diferente de preparar el pollo",
+        "image":"images/pollocrema.jpg",	
+        "category":"Principal",
+        "label":"Mexico DC",
+        "price":34,
+        "featured":true,
+        "comments":[
+            {
+                "review":5,
+                "comment":"Le clave el ojo y no pude resistirme",
+                "author":"Hawkeye"
+            },
+            {
+                "review":5,
+                "comment":"Algo de otra dimension",
+                "author":"Stephen Strange"
+            }
+        ]
+    },
+    {
+        "label": "Chocolate",
+        "featured": true,
+        "comments": [
+            {   
+                "review": 5,
+                "comment": "Es una mezcla de químicos que produce caos y sosiego en tu paladar, una bomba de tiempo <3",
+                "author": "Bruce Banner"
+            }
+        ],
+        "name": "Tarta de Queso y Chocolate",
+        "description": "Muy rápida de hacer y sin duda te lucís con esta receta.",
+        "image": "images/tartacheesecacao.jpg",
+        "category": "Merienda",
+        "price": 34
+    }
+]

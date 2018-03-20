@@ -2,37 +2,67 @@ const express=require("express");
 const bodyParser=require("body-parser");
 
 const dishRouter=express.Router();
+const Dishes=require("../models/dishes");
 
 dishRouter.use(bodyParser.json());
 dishRouter.route("/")
-.all((req,res,next)=>{
-    res.statusCode=200;
-    res.setHeader("Content-Type","text/plain");
-    next();
-}).get((req,res)=>{
-    res.end("Se enviaran todos los platos conocidos como respuesta");
-}).post((req,res)=>{
-    res.end("Se creara un nuevo plato llamado:"+req.body.name+" con los datos: "+req.body.description);
+.get((req,res,next)=>{
+    Dishes.find({}).exec()
+    .then((dishes)=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(dishes);
+    }).catch(err=>next(err))
+}).post((req,res,next)=>{
+    Dishes.create(req.body)
+    .then((dish)=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(dish);
+    }).catch(err=>next(err))
 }).put((req,res)=>{
     res.statusCode=403;
     res.end("Operacion no soportada para /dishes");
-}).delete((req,res)=>{
-    res.end("Se eliminaran todos los platos");
+}).delete((req,res,next)=>{
+    Dishes.remove({})
+    .then((resp)=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(resp);
+    })
+    .catch(err=>next(err))
 });
 dishRouter.route("/:dishId")
-.get((req,res)=>{
-    res.end("Enviando el plato:"+req.params.dishId+"\n");
+.get((req,res,next)=>{
+    Dishes.findById(req.params.dishId)
+    .then(dish=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(dish);
+    }).catch(err=>next(err))
 })
 .post((req,res)=>{
     res.statusCode=403;
     res.end("Operacion no soportada para /dishes/"+req.params.dishId);
 })
-.put((req,res)=>{
-    res.write("Actualizando el plato:"+req.params.dishId+"/n");
-    res.end("Los nuevos datos son Nombre:"+req.body.name+" Descripcion:"+req.body.description);
+.put((req,res,next)=>{
+    Dishes.findByIdAndUpdate(req.params.dishId,
+    {$set:req.body},{
+        new:true
+    })
+    .then(dish=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(dish);
+    }).catch(err=>next(err))
 })
-.delete((req,res)=>{
-    res.end("Eliminando el plato:"+req.params.dishId);
+.delete((req,res,next)=>{
+    Dishes.findByIdAndRemove(req.params.dishId)
+    .then(resp=>{
+        res.statusCode=200;
+        res.setHeader("Content-Type","appication/json");
+        res.json(resp);
+    }).catch(err=>next(err))
 });
 
 module.exports=dishRouter;

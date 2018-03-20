@@ -29,14 +29,14 @@
         "featured":true,
         "comments":[
             {
-                "review":5,
-                "comment":"Le clave el ojo y no pude resistirme",
-                "author":"Hawkeye"
+                "review": 4,
+                "comment": "Pase a otra dimension sin usar ningun portal",
+                "author": "Stephen Strange"
             },
             {
-                "review":5,
-                "comment":"Algo de otra dimension",
-                "author":"Stephen Strange"
+                "review": 5,
+                "comment": "Le clave el ojo y no pude resistirme",
+                "author": "Hawkeye"
             }
         ]
     },
